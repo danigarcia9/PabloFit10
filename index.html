@@ -1,124 +1,725 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <title>Aviso Legal | PabloFit10</title>
     <script>
-        function changeLanguage(lang) {
-            document.querySelector('.spanish').style.display = lang === 'es' ? 'block' : 'none';
-            document.querySelector('.english').style.display = lang === 'en' ? 'block' : 'none';
+      function changeLanguage(lang) {
+        // Mostrar u ocultar el contenido principal según el idioma
+        document.querySelectorAll(".spanish").forEach(function(element) {
+          element.style.display = lang === "es" ? "block" : "none";
+        });
+        document.querySelectorAll(".english").forEach(function(element) {
+          element.style.display = lang === "en" ? "block" : "none";
+        });
+
+        // Cambiar el texto del botón de privacidad
+        var privacyButton = document.getElementById("privacyButton");
+        if (lang === "es") {
+          privacyButton.textContent = "Ver Política de Privacidad";
+        } else if (lang === "en") {
+          privacyButton.textContent = "View Privacy Policy";
         }
+      }
+
+      function openPrivacyModal() {
+        var modal = document.getElementById("privacyModal");
+        modal.style.display = "block";
+        
+        // Determinar el idioma actual basado en el atributo lang del html
+        var currentLang = document.documentElement.lang || "es";
+        
+        // Mostrar el contenido del modal en el idioma correcto
+        document.querySelector("#privacyModal .spanish").style.display = 
+          currentLang === "es" ? "block" : "none";
+        document.querySelector("#privacyModal .english").style.display = 
+          currentLang === "en" ? "block" : "none";
+      }
+
+      function closePrivacyModal() {
+        document.getElementById("privacyModal").style.display = "none";
+      }
+
+      // Cerrar el modal si se hace clic fuera de él
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("privacyModal")) {
+          closePrivacyModal();
+        }
+      };
+
+      // Actualizar el atributo lang del documento al cambiar el idioma
+      document.addEventListener("DOMContentLoaded", function () {
+        var languageButtons = document.querySelectorAll(
+          ".language-switch button"
+        );
+        languageButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            var lang = this.getAttribute("onclick").match(/'(\w+)'/)[1];
+            document.documentElement.lang = lang;
+          });
+        });
+      });
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <img src="logo_transparente_blanco.webp" alt="Logo">
-        <div class="language-switch">
-            <button onclick="changeLanguage('es')">
-                <img src="spain.webp" alt="ES"> ES
-            </button>
-            <button onclick="changeLanguage('en')">
-                <img src="uk.webp" alt="EN"> EN
-            </button>
-        </div>
-    </header>    
+      <img src="logo_transparente_blanco.webp" alt="Logo" />
+      <div class="language-switch">
+        <button onclick="changeLanguage('es')">
+          <img src="spain.webp" alt="ES" /> ES
+        </button>
+        <button onclick="changeLanguage('en')">
+          <img src="uk.webp" alt="EN" /> EN
+        </button>
+      </div>
+    </header>
     <main>
-        <section class="spanish">
-            <h1>Aviso Legal</h1>
-            <div class="section">
-                <h2>RIESGOS DEL USO DEL PRODUCTO</h2>
-                <p>El contenido de este sitio web no reemplaza a la atención médica ni al diagnóstico directo, personal y profesional. Ninguno de los planes de comidas o programas de ejercicios debe realizarse o usarse de otra manera sin la autorización previa de su médico o proveedor de atención médica. La información contenida en este documento no tiene la intención de proporcionar consejos específicos de salud física o mental, o cualquier otro consejo, para ninguna persona o empresa y no se debe confiar en ese aspecto. No somos profesionales médicos y nada en este sitio web debe malinterpretarse en el sentido contrario.</p>
-                <p>Puede haber riesgos asociados con la participación en actividades mencionadas en nuestro sitio para personas con problemas de salud o con afecciones físicas o mentales preexistentes. Debido a que existen estos riesgos, no participará en ningún plan de comidas disponible de nosotros si tiene mala salud o tiene una condición mental o física preexistente. Si elige participar en estos riesgos, lo hace por su propia voluntad y acuerdo, asumiendo a sabiendas y voluntariamente todos los riesgos asociados con tales actividades dietéticas. Estos riesgos también pueden existir para aquellos que actualmente gozan de buena salud en este momento.</p>
-                <p>Como con cualquier programa de ejercicios, usted asume ciertos riesgos para su salud y seguridad. Cualquier forma de programa de ejercicios puede causar lesiones, y nuestros programas no son una excepción. Es posible que se lastime haciendo los ejercicios en su programa, especialmente si los ejecuta con una mala forma o técnica. Aunque se incluye una instrucción completa en el formulario para cada ejercicio.</p>
-                <p>Tenga en cuenta que nuestros programas (como cualquier otro programa de ejercicios) implican un riesgo de lesión. Si elige participar en estos riesgos, lo hace por su propia voluntad y acuerdo, asumiendo a sabiendas y voluntariamente todos los riesgos asociados con tales actividades de ejercicio. Estos riesgos también pueden existir para aquellos que actualmente gozan de buena salud en este momento.</p>
-                <p>No somos médicos. Nuestros consejos, ya sea en nuestro sitio web, en nuestro plan de comidas, en nuestro programa de ejercicios o por correo electrónico, no pretenden sustituir el asesoramiento médico. Debe consultar a su médico antes de comenzar CUALQUIER plan de comidas o programa de ejercicios, sin excepciones. Está utilizando nuestros planes, programas de entrenamientos y tutorías bajo su propio riesgo y no somos responsables de ninguna lesión o problema de salud que pueda experimentar o incluso la muerte como resultado del uso de nuestros programas.</p>
-            </div>
-            <div class="section">
-                <h2>RESULTADOS GENERALMENTE ESPERADOS</h2>
-                <p>Aunque nuestros productos y servicios están destinados a ser implementados en su totalidad, a veces no lo son, lo que podría resultar en una falta de progreso / resultados para el usuario. Si implementa correctamente nuestros productos y servicios, debería ver resultados satisfactorios, sin embargo, debe aclararse que incluso cuando los consumidores implementen todos nuestros productos o servicios, aun así es posible que no obtengan los resultados que podrían haber esperado y también es posible que no pierdan grasa ni ganan músculo ni tengan ningún resultado positivo de ningún tipo.</p>
-            </div>
-            <div class="section">
-                <h2>RENUNCIA DE RESPONSABILIDAD TESTIMONIAL</h2>
-                <p>Todas las transformaciones y testimonios son reales. Sin embargo, se aclara que estos testimonios no representan resultados típicos con nuestros planes de comidas y programas de entrenamiento. Están diseñados como una vitrina de lo que las personas más motivadas y dedicadas pueden lograr siguiendo nuestros planes de entrenamiento y plan de comidas personalizados. Tus resultados pueden variar y es posible que no obtengas los mismos resultados en comparación con otra persona cuando utiliza nuestros servicios debido a diferencias en su historial de ejercicio individual, genética y motivación / dedicación personal. Los resultados finales que obtenga dependen del individuo y de cuanto esfuerzo ponga.</p>
-            </div>
-            <div class="section">
-                <h2>POLÍTICA DE ENVÍOS</h2>
-                <p>Al tratarse de un servicio, no habrá envíos presenciales, sin embargo la entrega de algunos de mis servicios online se realizarán en el plazo de 24-36 horas desde que el cliente realiza la compra</p>
-            </div>
-            <div class="section">
-                <h2>CANCELACIÓN DE PEDIDOS y DEVOLUCIÓN Y REEMBOLSO</h2>
-                <p>Con nuestros productos en línea, tenemos una garantía de devolución del dinero de 24 horas: si dentro de las primeras 24 horas de su compra inicial no está feliz o satisfecho con alguna de sus compras (servicios de suscripción y sin suscripción) por cualquier razón, simplemente solicite un reembolso completo poniéndose en contacto con el equipo de Atención al cliente <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a>. Se le reembolsará y se cancelará su suscripción. Sin embargo, si ha comprado un programa durante un periodo promocional y ha canjeado esa promoción (por ejemplo, suplementos, ropa, auriculares), no será elegible para un reembolso. Ni así lo será una reserva del mismo programa de una cuantía menor a su valor.</p>
-            </div>
-            <div class="section">
-                <h2>SEGURIDAD Y PROTECCIÓN A COMPRADORES</h2>
-                <p><strong>Visa/Mastercard/</strong> el usuario deberá proporcionar el nombre del titular de la tarjeta, el número, la fecha de caducidad y el CVV.</p>
-                <p>Toda la información será tramitada a través de una pasarela de pagos externa a <strong>PABLOFIT10</strong>. denominada Stripe, pudiendo obtener más información visitando su página web <a href="https://stripe.com/es/privacy">https://stripe.com/es/privacy</a></p>
-                <p>La cuota de suscripción se cobrará en la fecha de facturación indicada tras la adquisición de la formación y se realizará de forma mensual, trimestral o anual, según la modalidad adquirida.</p>
-            </div>
-            <div class="section">
-                <h2>INFORMACIÓN DE FACTURACIÓN DE LA SUSCRIPCIÓN RECURRENTE IMPORTANTE</h2>
-                <p>Si compra nuestro programa, se le cobrará automáticamente cada periodo y continuará recibiendo nuevos planes de comidas y programas de entrenamiento actualizados durante el tiempo que elija seguir siendo cliente. Para cancelar su suscripción, simplemente envíe un correo electrónico a <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a> al menos 3 días (72 horas) antes de su próximo día de facturación.</p>
-                <p>Con nuestros productos en línea, tenemos una garantía de devolución del dinero de 1 dia: si dentro del primer dia de su compra inicial (primera) no está feliz o satisfecho con alguna de sus compras (servicios de suscripción) por cualquier razón, simplemente solicite un reembolso completo poniéndose en contacto con el equipo de Atención al cliente. Se le reembolsará y se cancelará su suscripción.</p>
-            </div>
-            <div class="section">
-                <h2>Contacto</h2>
-                <p>¿Tiene preguntas acerca de esto? ¡Envíanos un email! Puedes ponerte en contacto con nuestro equipo de atención al cliente en <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a> y estaremos encantados de responder a cualquiera de sus preguntas.</p>
-            </div>
-        </section>
-        <section class="english" style="display:none;">
-            <h1>Legal Notice</h1>
-            <div class="section">
-                <h2>RISKS OF USING THE PRODUCT</h2>
-                <p>The content of this website does not replace medical care or direct, personal, and professional diagnosis. None of the meal plans or exercise programs should be performed or used otherwise without prior authorization from your doctor or healthcare provider. The information contained herein is not intended to provide specific physical or mental health advice or any other advice for any individual or company and should not be relied upon in that regard. We are not medical professionals, and nothing on this website should be misconstrued to suggest otherwise.</p>
-                <p>There may be risks associated with participating in activities mentioned on our site for people with health issues or pre-existing physical or mental conditions. Because of these risks, you will not participate in any meal plan available from us if you are in poor health or have a pre-existing mental or physical condition. If you choose to participate in these risks, you do so of your own will and agreement, knowingly and voluntarily assuming all risks associated with such dietary activities. These risks may also exist for those who are currently in good health at this time.</p>
-                <p>As with any exercise program, you assume certain risks to your health and safety. Any form of exercise program can cause injuries, and our programs are no exception. You may injure yourself performing the exercises in your program, especially if you perform them with improper form or technique. While complete instruction in form is included for each exercise.</p>
-                <p>Please note that our programs (like any other exercise program) involve a risk of injury. If you choose to participate in these risks, you do so of your own will and agreement, knowingly and voluntarily assuming all risks associated with such exercise activities. These risks may also exist for those who are currently in good health at this time.</p>
-                <p>We are not doctors. Our advice, whether on our website, in our meal plan, in our exercise program, or via email, is not intended to substitute for medical advice. You should consult your doctor before beginning ANY meal plan or exercise program, without exception. You are using our plans, workout programs, and coaching at your own risk, and we are not responsible for any injuries or health problems you may experience or even death as a result of using our programs.</p>
-            </div>
-            <div class="section">
-                <h2>TYPICAL RESULTS EXPECTED</h2>
-                <p>Although our products and services are intended to be fully implemented, sometimes they are not, which could result in a lack of progress/results for the user. If you correctly implement our products and services, you should see satisfactory results, however, it must be clarified that even when consumers implement all our products or services, it is still possible that they may not achieve the results they might have expected and it is also possible that they will not lose fat, gain muscle, or have any positive results of any kind.</p>
-            </div>
-            <div class="section">
-                <h2>TESTIMONIAL DISCLAIMER</h2>
-                <p>All transformations and testimonials are real. However, it is clarified that these testimonials do not represent typical results with our meal plans and training programs. They are designed as a showcase of what the most motivated and dedicated individuals can achieve by following our personalized training and meal plans. Your results may vary, and you may not achieve the same results compared to another person using our services due to differences in your individual exercise history, genetics, and personal motivation/dedication. The final results you obtain depend on the individual and how much effort you put in.</p>
-            </div>
-            <div class="section">
-                <h2>SHIPPING POLICY</h2>
-                <p>Since this is a service, there will be no physical shipments, however, the delivery of some of my online services will be made within 24-36 hours from the time the client makes the purchase.</p>
-            </div>
-            <div class="section">
-                <h2>ORDER CANCELLATION AND RETURN & REFUND</h2>
-                <p>With our online products, we have a 24-hours money-back guarantee: if within the first 24 hours of your initial purchase you are not happy or satisfied with any of your purchases (subscription and non-subscription services) for any reason, simply request a full refund by contacting the Customer Service team at <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a>. You will be refunded, and your subscription will be canceled. However, if you purchased a program during a promotional period and redeemed that promotion (e.g., supplements, clothing, headphones), you will not be eligible for a refund. Nor will it be a reservation of the same program of a lower amount than its value.</p>
-            </div>
-            <div class="section">
-                <h2>SECURITY AND PROTECTION FOR BUYERS</h2>
-                <p><strong>Visa/Mastercard/</strong> the user must provide the cardholder's name, number, expiration date, and CVV.</p>
-                <p>All information will be processed through an external payment gateway to <strong>PABLOFIT10</strong> called Stripe, more information can be found by visiting their website <a href="https://stripe.com/es/privacy">https://stripe.com/es/privacy</a></p>
-                <p>The subscription fee will be charged on the billing date indicated after the purchase of the training and will be made on a monthly, quarterly, or annual basis, depending on the acquired mode.</p>
-            </div>
-            <div class="section">
-                <h2>IMPORTANT RECURRING SUBSCRIPTION BILLING INFORMATION</h2>
-                <p>If you purchase our program, you will be automatically charged each period and will continue to receive new updated meal plans and training programs for as long as you choose to remain a customer. To cancel your subscription, simply email <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a> at least 3 days (72 hours) before your next billing day.</p>
-                <p>With our online products, we have a 1-day money-back guarantee: if within the first day (1) of your initial (first) purchase you are not happy or satisfied with any of your purchases (subscription services) for any reason, simply request a full refund by contacting the Customer Service team. You will be refunded, and your subscription will be canceled.</p>
-            </div>
-            <div class="section">
-                <h2>Contact</h2>
-                <p>Do you have questions about this? Send us an email! You can contact our customer service team at <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a>, and we will be happy to answer any of your questions.</p>
-            </div>
-        </section>
+      <section class="spanish">
+        <h1>Aviso Legal</h1>
+        <div class="section">
+          <h2>RIESGOS DEL USO DEL PRODUCTO</h2>
+          <p>
+            El contenido de este sitio web no reemplaza a la atención médica ni
+            al diagnóstico directo, personal y profesional. Ninguno de los
+            planes de comidas o programas de ejercicios debe realizarse o usarse
+            de otra manera sin la autorización previa de su médico o proveedor
+            de atención médica. La información contenida en este documento no
+            tiene la intención de proporcionar consejos específicos de salud
+            física o mental, o cualquier otro consejo, para ninguna persona o
+            empresa y no se debe confiar en ese aspecto. No somos profesionales
+            médicos y nada en este sitio web debe malinterpretarse en el sentido
+            contrario.
+          </p>
+          <p>
+            Puede haber riesgos asociados con la participación en actividades
+            mencionadas en nuestro sitio para personas con problemas de salud o
+            con afecciones físicas o mentales preexistentes. Debido a que
+            existen estos riesgos, no participará en ningún plan de comidas
+            disponible de nosotros si tiene mala salud o tiene una condición
+            mental o física preexistente. Si elige participar en estos riesgos,
+            lo hace por su propia voluntad y acuerdo, asumiendo a sabiendas y
+            voluntariamente todos los riesgos asociados con tales actividades
+            dietéticas. Estos riesgos también pueden existir para aquellos que
+            actualmente gozan de buena salud en este momento.
+          </p>
+          <p>
+            Como con cualquier programa de ejercicios, usted asume ciertos
+            riesgos para su salud y seguridad. Cualquier forma de programa de
+            ejercicios puede causar lesiones, y nuestros programas no son una
+            excepción. Es posible que se lastime haciendo los ejercicios en su
+            programa, especialmente si los ejecuta con una mala forma o técnica.
+            Aunque se incluye una instrucción completa en el formulario para
+            cada ejercicio.
+          </p>
+          <p>
+            Tenga en cuenta que nuestros programas (como cualquier otro programa
+            de ejercicios) implican un riesgo de lesión. Si elige participar en
+            estos riesgos, lo hace por su propia voluntad y acuerdo, asumiendo a
+            sabiendas y voluntariamente todos los riesgos asociados con tales
+            actividades de ejercicio. Estos riesgos también pueden existir para
+            aquellos que actualmente gozan de buena salud en este momento.
+          </p>
+          <p>
+            No somos médicos. Nuestros consejos, ya sea en nuestro sitio web, en
+            nuestro plan de comidas, en nuestro programa de ejercicios o por
+            correo electrónico, no pretenden sustituir el asesoramiento médico.
+            Debe consultar a su médico antes de comenzar CUALQUIER plan de
+            comidas o programa de ejercicios, sin excepciones. Está utilizando
+            nuestros planes, programas de entrenamientos y tutorías bajo su
+            propio riesgo y no somos responsables de ninguna lesión o problema
+            de salud que pueda experimentar o incluso la muerte como resultado
+            del uso de nuestros programas.
+          </p>
+        </div>
+        <div class="section">
+          <h2>RESULTADOS GENERALMENTE ESPERADOS</h2>
+          <p>
+            Aunque nuestros productos y servicios están destinados a ser
+            implementados en su totalidad, a veces no lo son, lo que podría
+            resultar en una falta de progreso / resultados para el usuario. Si
+            implementa correctamente nuestros productos y servicios, debería ver
+            resultados satisfactorios, sin embargo, debe aclararse que incluso
+            cuando los consumidores implementen todos nuestros productos o
+            servicios, aun así es posible que no obtengan los resultados que
+            podrían haber esperado y también es posible que no pierdan grasa ni
+            ganan músculo ni tengan ningún resultado positivo de ningún tipo.
+          </p>
+        </div>
+        <div class="section">
+          <h2>RENUNCIA DE RESPONSABILIDAD TESTIMONIAL</h2>
+          <p>
+            Todas las transformaciones y testimonios son reales. Sin embargo, se
+            aclara que estos testimonios no representan resultados típicos con
+            nuestros planes de comidas y programas de entrenamiento. Están
+            diseñados como una vitrina de lo que las personas más motivadas y
+            dedicadas pueden lograr siguiendo nuestros planes de entrenamiento y
+            plan de comidas personalizados. Tus resultados pueden variar y es
+            posible que no obtengas los mismos resultados en comparación con
+            otra persona cuando utiliza nuestros servicios debido a diferencias
+            en su historial de ejercicio individual, genética y motivación /
+            dedicación personal. Los resultados finales que obtenga dependen del
+            individuo y de cuanto esfuerzo ponga.
+          </p>
+        </div>
+        <div class="section">
+          <h2>POLÍTICA DE ENVÍOS</h2>
+          <p>
+            Al tratarse de un servicio, no habrá envíos presenciales, sin
+            embargo la entrega de algunos de mis servicios online se realizarán
+            en el plazo de 24-36 horas desde que el cliente realiza la compra
+          </p>
+        </div>
+        <div class="section">
+          <h2>CANCELACIÓN DE PEDIDOS, DEVOLUCIÓN Y REEMBOLSO</h2>
+          <p>
+            Lamentablemente, no se aceptan devoluciones en ninguno de nuestros productos adquiridos en línea, ya sea que se trate de suscripciones o productos sin suscripción. Una vez realizada la compra, no se otorgarán reembolsos por ninguna razón. Esto incluye tanto servicios de suscripción como productos promocionales, tales como suplementos, ropa o auriculares.
+          </p>
+        </div>
+        <div class="section">
+          <h2>SEGURIDAD Y PROTECCIÓN A LOS COMPRADORES</h2>
+          <p>
+            Al realizar el pago a través de Visa o Mastercard, se le pedirá proporcionar los siguientes datos:
+          </p>
+          <ul>
+            <li>Nombre del titular de la tarjeta</li>
+            <li>Número de tarjeta</li>
+            <li>Fecha de caducidad</li>
+            <li>CVV</li>
+          </ul>
+          <p>
+            Toda la información será gestionada por una pasarela de pagos externa llamada Stripe, de acuerdo con su política de privacidad, que puede consultar en su sitio web 
+            <a href="https://stripe.com/es/privacy">aquí</a>.
+          </p>
+        </div>
+        <div class="section">
+          <h2>INFORMACIÓN DE FACTURACIÓN DE LA SUSCRIPCIÓN RECURRENTE IMPORTANTE</h2>
+          <p>
+            Una vez que haya adquirido nuestro programa, se le cobrará automáticamente en la fecha de facturación indicada y continuará recibiendo planes de comidas y programas de entrenamiento actualizados según la modalidad de suscripción seleccionada (mensual, trimestral o anual). Si desea cancelar su suscripción, deberá enviar un correo electrónico a 
+            <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a> 
+            al menos 72 horas (3 días) antes de su próximo día de facturación.
+          </p>
+        </div>
+        <div class="section">
+          <h2>POLÍTICA DE DEVOLUCIÓN</h2>
+          <p>
+            Dado que no se aceptan devoluciones en nuestros productos, le recomendamos asegurarse de que está satisfecho con su compra antes de finalizarla. No se otorgarán reembolsos bajo ninguna circunstancia, y todas las ventas son finales.
+          </p>
+        </div>
+        <div class="section">
+          <h2>Contacto</h2>
+          <p>
+            ¿Tiene preguntas acerca de esto? ¡Envíanos un email! Puedes ponerte
+            en contacto con nuestro equipo de atención al cliente en
+            <a href="mailto:pablotrainer10@gmail.com"
+              >pablotrainer10@gmail.com</a
+            >
+            y estaremos encantados de responder a cualquiera de sus preguntas.
+          </p>
+        </div>
+      </section>
+      <section class="english" style="display: none">
+        <h1>Legal Notice</h1>
+        <div class="section">
+          <h2>RISKS OF USING THE PRODUCT</h2>
+          <p>
+            The content of this website does not replace medical care or direct,
+            personal, and professional diagnosis. None of the meal plans or
+            exercise programs should be performed or used otherwise without
+            prior authorization from your doctor or healthcare provider. The
+            information contained herein is not intended to provide specific
+            physical or mental health advice or any other advice for any
+            individual or company and should not be relied upon in that regard.
+            We are not medical professionals, and nothing on this website should
+            be misconstrued to suggest otherwise.
+          </p>
+          <p>
+            There may be risks associated with participating in activities
+            mentioned on our site for people with health issues or pre-existing
+            physical or mental conditions. Because of these risks, you will not
+            participate in any meal plan available from us if you are in poor
+            health or have a pre-existing mental or physical condition. If you
+            choose to participate in these risks, you do so of your own will and
+            agreement, knowingly and voluntarily assuming all risks associated
+            with such dietary activities. These risks may also exist for those
+            who are currently in good health at this time.
+          </p>
+          <p>
+            As with any exercise program, you assume certain risks to your
+            health and safety. Any form of exercise program can cause injuries,
+            and our programs are no exception. You may injure yourself
+            performing the exercises in your program, especially if you perform
+            them with improper form or technique. While complete instruction in
+            form is included for each exercise.
+          </p>
+          <p>
+            Please note that our programs (like any other exercise program)
+            involve a risk of injury. If you choose to participate in these
+            risks, you do so of your own will and agreement, knowingly and
+            voluntarily assuming all risks associated with such exercise
+            activities. These risks may also exist for those who are currently
+            in good health at this time.
+          </p>
+          <p>
+            We are not doctors. Our advice, whether on our website, in our meal
+            plan, in our exercise program, or via email, is not intended to
+            substitute for medical advice. You should consult your doctor before
+            beginning ANY meal plan or exercise program, without exception. You
+            are using our plans, workout programs, and coaching at your own
+            risk, and we are not responsible for any injuries or health problems
+            you may experience or even death as a result of using our programs.
+          </p>
+        </div>
+        <div class="section">
+          <h2>TYPICAL RESULTS EXPECTED</h2>
+          <p>
+            Although our products and services are intended to be fully
+            implemented, sometimes they are not, which could result in a lack of
+            progress/results for the user. If you correctly implement our
+            products and services, you should see satisfactory results, however,
+            it must be clarified that even when consumers implement all our
+            products or services, it is still possible that they may not achieve
+            the results they might have expected and it is also possible that
+            they will not lose fat, gain muscle, or have any positive results of
+            any kind.
+          </p>
+        </div>
+        <div class="section">
+          <h2>TESTIMONIAL DISCLAIMER</h2>
+          <p>
+            All transformations and testimonials are real. However, it is
+            clarified that these testimonials do not represent typical results
+            with our meal plans and training programs. They are designed as a
+            showcase of what the most motivated and dedicated individuals can
+            achieve by following our personalized training and meal plans. Your
+            results may vary, and you may not achieve the same results compared
+            to another person using our services due to differences in your
+            individual exercise history, genetics, and personal
+            motivation/dedication. The final results you obtain depend on the
+            individual and how much effort you put in.
+          </p>
+        </div>
+        <div class="section">
+          <h2>SHIPPING POLICY</h2>
+          <p>
+            Since this is a service, there will be no physical shipments,
+            however, the delivery of some of my online services will be made
+            within 24-36 hours from the time the client makes the purchase.
+          </p>
+        </div>
+        <div class="section">
+          <h2>ORDER CANCELLATION, RETURN & REFUND</h2>
+          <p>
+            Unfortunately, we do not accept returns on any of our online products, whether they are subscriptions or non-subscription products. Once the purchase is made, no refunds will be granted for any reason. This includes both subscription services and promotional products, such as supplements, clothing, or headphones.
+          </p>
+        </div>
+        <div class="section">
+          <h2>SECURITY AND PROTECTION FOR BUYERS</h2>
+          <p>
+            When making a payment through Visa or Mastercard, you will be asked to provide the following information:
+          </p>
+          <ul>
+            <li>Cardholder's name</li>
+            <li>Card number</li>
+            <li>Expiration date</li>
+            <li>CVV</li>
+          </ul>
+          <p>
+            All information will be managed by an external payment gateway called Stripe, in accordance with their privacy policy, which you can consult on their website 
+            <a href="https://stripe.com/es/privacy">here</a>.
+          </p>
+        </div>
+        <div class="section">
+          <h2>IMPORTANT RECURRING SUBSCRIPTION BILLING INFORMATION</h2>
+          <p>
+            Once you have purchased our program, you will be automatically charged on the indicated billing date and will continue to receive updated meal plans and training programs according to the selected subscription mode (monthly, quarterly, or annual). If you wish to cancel your subscription, you must send an email to 
+            <a href="mailto:pablotrainer10@gmail.com">pablotrainer10@gmail.com</a> 
+            at least 72 hours (3 days) before your next billing date.
+          </p>
+        </div>
+        <div class="section">
+          <h2>RETURN POLICY</h2>
+          <p>
+            Since we do not accept returns on our products, we recommend ensuring that you are satisfied with your purchase before finalizing it. No refunds will be granted under any circumstances, and all sales are final.
+          </p>
+        </div>
+        <div class="section">
+          <h2>Contact</h2>
+          <p>
+            Do you have questions about this? Send us an email! You can contact
+            our customer service team at
+            <a href="mailto:pablotrainer10@gmail.com"
+              >pablotrainer10@gmail.com</a
+            >, and we will be happy to answer any of your questions.
+          </p>
+        </div>
+      </section>
     </main>
+
+    <button
+      class="privacy-button"
+      onclick="openPrivacyModal()"
+      id="privacyButton"
+    >
+      Ver Política de Privacidad
+    </button>
+
+    <div id="privacyModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closePrivacyModal()">&times;</span>
+        <div class="modal-body">
+          <section class="spanish">
+            <h2>Política de Privacidad de PABLOFIT10</h2>
+            <div class="section">
+              <h2>Información sobre protección de datos en PABLOFIT10</h2>
+              <p>
+                Esta política de privacidad establece cómo se gestionan los
+                datos personales en el sitio web www.pablotfit10.com, propiedad
+                de VERGARA & CISNEROS LLC, con EIN 61-2223030, y domicilio en
+                1209 Mountain Road Place Northeast, Albuquerque, NM 87110.
+              </p>
+              <p>
+                Es imprescindible que leas y aceptes esta política antes de
+                continuar navegando por nuestro sitio web.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Compromiso con la Privacidad</h2>
+              <p>
+                En PABLOFIT10 valoramos la transparencia, por lo que queremos
+                informarte claramente sobre cómo tratamos tus datos personales.
+                La privacidad de tu información es crucial para nosotros, y
+                garantizamos un alto nivel de seguridad mediante prácticas
+                responsables de manejo, comunicación y almacenamiento de datos.
+              </p>
+              <p>
+                En esta declaración, te explicamos qué información personal
+                recopilamos, cómo la usamos, y tus derechos como usuario. Nos
+                esforzamos por crear un entorno seguro para la protección de tus
+                datos.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Principios de Privacidad</h2>
+              <ul>
+                <li>
+                  No solicitamos información personal a los usuarios, salvo que
+                  sea necesario para ofrecer nuestros servicios.
+                </li>
+                <li>
+                  No compartimos información personal, salvo que sea necesario
+                  para cumplir con la ley o con el consentimiento explícito del
+                  usuario.
+                </li>
+                <li>
+                  Los datos personales se usarán únicamente para los fines
+                  especificados en esta política.
+                </li>
+              </ul>
+            </div>
+            <div class="section">
+              <h2>Cambios en la Política</h2>
+              <p>
+                Esta Política de Privacidad puede ser modificada debido a
+                cambios legislativos o autorregulatorios. Te recomendamos
+                revisar esta política periódicamente para estar al tanto de
+                cualquier actualización.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Cumplimiento Normativo</h2>
+              <p>
+                PABLOFIT10 cumple con la Ley Orgánica 15/1999, de 13 de
+                diciembre, de Protección de Datos de Carácter Personal (LOPD),
+                el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo
+                (RGPD), y la Ley 34/2002 de Servicios de la Sociedad de la
+                Información y de Comercio Electrónico (LSSICE o LSSI).
+              </p>
+            </div>
+            <div class="section">
+              <h2>Responsable del Tratamiento de Datos</h2>
+              <p>
+                Identidad: VERGARA & CISNEROS LLC<br />
+                EIN: 61-2223030<br />
+                Dirección: 1209 Mountain Road Place Northeast, Albuquerque, NM
+                87110
+              </p>
+            </div>
+            <div class="section">
+              <h2>Finalidad del Tratamiento</h2>
+              <p>
+                Recopilamos tus datos personales para enviarte información sobre
+                eventos, noticias, novedades, productos y servicios relacionados
+                con nuestra empresa. Los datos personales se conservarán hasta
+                que se solicite su eliminación.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Derechos de los Usuarios</h2>
+              <p>
+                Tienes derecho a acceder, rectificar, suprimir, limitar el
+                tratamiento y oponerte al uso de tus datos personales. También
+                puedes solicitar la portabilidad de tus datos.
+              </p>
+              <p>
+                Si lo deseas, puedes revocar tu consentimiento en cualquier
+                momento contactándonos a través de pablotrainer10@gmail.com.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Transferencia de Datos</h2>
+              <ul>
+                <li>
+                  Usamos servicios de Microsoft OneDrive para almacenar datos,
+                  respaldado por el acuerdo Escudo de Privacidad UE-EE.UU..
+                </li>
+                <li>
+                  Google Analytics nos ayuda a analizar el uso de nuestro sitio
+                  web mediante cookies.
+                </li>
+              </ul>
+            </div>
+            <div class="section">
+              <h2>Seguridad de Datos</h2>
+              <p>
+                Nos comprometemos a proteger tus datos con medidas físicas,
+                electrónicas y de procedimiento, pero no podemos garantizar la
+                seguridad absoluta debido a la naturaleza de Internet.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Datos Recopilados</h2>
+              <p>Los datos personales que recopilamos incluyen:</p>
+              <ul>
+                <li>
+                  Datos de identificación (nombre, correo electrónico,
+                  teléfono).
+                </li>
+                <li>Dirección postal o electrónica.</li>
+                <li>
+                  Información financiera proporcionada por los usuarios para los
+                  servicios solicitados.
+                </li>
+              </ul>
+              <p>
+                También recopilamos datos no identificativos mediante cookies,
+                detallados en nuestra política de cookies.
+              </p>
+            </div>
+            <div class="section">
+              <h2>No Vendemos Datos Personales</h2>
+              <p>
+                No vendemos ni alquilamos tus datos personales. Solo los
+                compartimos con terceros cuando es necesario para proporcionar
+                nuestros servicios, y siempre con tu consentimiento previo.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Responsabilidad del Usuario</h2>
+              <p>
+                El usuario es responsable de la exactitud y actualidad de los
+                datos personales proporcionados y se compromete a mantenerlos
+                actualizados.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Actualización de la Política</h2>
+              <p>
+                Esta política puede ser modificada en cualquier momento. Te
+                notificaremos cualquier cambio importante que afecte el
+                tratamiento de tus datos personales.
+              </p>
+              <p>Última actualización: 24 de diciembre de 2024.</p>
+              <p>
+                Para cualquier pregunta o inquietud sobre esta política, puedes
+                ponerte en contacto con nosotros a través de
+                <a href="mailto:pablotrainer10@gmail.com"
+                  >pablotrainer10@gmail.com</a
+                >.
+              </p>
+            </div>
+          </section>
+          <section class="english" style="display: none">
+            <h2>Privacy Policy of PABLOFIT10</h2>
+            <div class="section">
+              <h2>Data Protection Information at PABLOFIT10</h2>
+              <p>
+                This privacy policy outlines how personal data is managed on the
+                website www.pablotfit10.com, owned by VERGARA & CISNEROS LLC,
+                with EIN 61-2223030, and located at 1209 Mountain Road Place
+                Northeast, Albuquerque, NM 87110.
+              </p>
+              <p>
+                It is essential that you read and accept this policy before
+                continuing to browse our website.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Commitment to Privacy</h2>
+              <p>
+                At PABLOFIT10, we value transparency, so we want to clearly
+                inform you about how we handle your personal data. The privacy
+                of your information is crucial to us, and we guarantee a high
+                level of security through responsible data management,
+                communication, and storage practices.
+              </p>
+              <p>
+                In this statement, we explain what personal information we
+                collect, how we use it, and your rights as a user. We strive to
+                create a secure environment for the protection of your data.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Privacy Principles</h2>
+              <ul>
+                <li>
+                  We do not request personal information from users unless it is
+                  necessary to provide our services.
+                </li>
+                <li>
+                  We do not share personal information unless it is necessary to
+                  comply with the law or with the explicit consent of the user.
+                </li>
+                <li>
+                  Personal data will be used solely for the purposes specified
+                  in this policy.
+                </li>
+              </ul>
+            </div>
+            <div class="section">
+              <h2>Changes to the Policy</h2>
+              <p>
+                This Privacy Policy may be modified due to legislative or
+                self-regulatory changes. We recommend reviewing this policy
+                periodically to stay informed of any updates.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Regulatory Compliance</h2>
+              <p>
+                PABLOFIT10 complies with Organic Law 15/1999, of December 13, on
+                the Protection of Personal Data (LOPD), Regulation (EU) 2016/679
+                of the European Parliament and of the Council (GDPR), and Law
+                34/2002 on Information Society Services and Electronic Commerce
+                (LSSICE or LSSI).
+              </p>
+            </div>
+            <div class="section">
+              <h2>Data Controller</h2>
+              <p>
+                Identity: VERGARA & CISNEROS LLC<br />
+                EIN: 61-2223030<br />
+                Address: 1209 Mountain Road Place Northeast, Albuquerque, NM
+                87110
+              </p>
+            </div>
+            <div class="section">
+              <h2>Purpose of Data Processing</h2>
+              <p>
+                We collect your personal data to send you information about
+                events, news, updates, products, and services related to our
+                company. Personal data will be retained until its deletion is
+                requested.
+              </p>
+            </div>
+            <div class="section">
+              <h2>User Rights</h2>
+              <p>
+                You have the right to access, rectify, delete, restrict
+                processing, and object to the use of your personal data. You can
+                also request the portability of your data.
+              </p>
+              <p>
+                If you wish, you can revoke your consent at any time by
+                contacting us at pablotrainer10@gmail.com.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Data Transfer</h2>
+              <ul>
+                <li>
+                  We use Microsoft OneDrive services to store data, supported by
+                  the EU-US Privacy Shield agreement.
+                </li>
+                <li>
+                  Google Analytics helps us analyze the use of our website
+                  through cookies.
+                </li>
+              </ul>
+            </div>
+            <div class="section">
+              <h2>Data Security</h2>
+              <p>
+                We are committed to protecting your data with physical,
+                electronic, and procedural measures, but we cannot guarantee
+                absolute security due to the nature of the Internet.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Data Collected</h2>
+              <p>The personal data we collect includes:</p>
+              <ul>
+                <li>Identification data (name, email, phone).</li>
+                <li>Postal or electronic address.</li>
+                <li>
+                  Financial information provided by users for the requested
+                  services.
+                </li>
+              </ul>
+              <p>
+                We also collect non-identifying data through cookies, detailed
+                in our cookie policy.
+              </p>
+            </div>
+            <div class="section">
+              <h2>We Do Not Sell Personal Data</h2>
+              <p>
+                We do not sell or rent your personal data. We only share it with
+                third parties when necessary to provide our services, and always
+                with your prior consent.
+              </p>
+            </div>
+            <div class="section">
+              <h2>User Responsibility</h2>
+              <p>
+                The user is responsible for the accuracy and up-to-dateness of
+                the provided personal data and agrees to keep them updated.
+              </p>
+            </div>
+            <div class="section">
+              <h2>Policy Update</h2>
+              <p>
+                This policy may be modified at any time. We will notify you of
+                any significant changes that affect the processing of your
+                personal data.
+              </p>
+              <p>Last update: December 24, 2024.</p>
+              <p>
+                For any questions or concerns about this policy, you can contact
+                us at
+                <a href="mailto:pablotrainer10@gmail.com"
+                  >pablotrainer10@gmail.com</a
+                >.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
     <footer>
-        <p>Contacta con nosotros:</p>
-        <a href="https://www.instagram.com/pablofit_10/" target="_blank">
-            <img src="instagram.webp" alt="Instagram">
-        </a>
-        <a href="https://api.whatsapp.com/send/?phone=34640974820" target="_blank">
-            <img src="whatsapp.webp" alt="WhatsApp">
-        </a>
+      <p>Contacta con nosotros:</p>
+      <a href="https://www.instagram.com/pablofit_10/" target="_blank">
+        <img src="instagram.webp" alt="Instagram" />
+      </a>
+      <a
+        href="https://api.whatsapp.com/send/?phone=34640974820"
+        target="_blank"
+      >
+        <img src="whatsapp.webp" alt="WhatsApp" />
+      </a>
     </footer>
-</body>
+  </body>
 </html>
