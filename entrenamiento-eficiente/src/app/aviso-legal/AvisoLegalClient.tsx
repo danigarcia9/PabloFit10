@@ -4,6 +4,7 @@
 // Uso: maneja el estado de idioma y muestra el modal de privacidad; se renderiza desde `page.tsx`.
 
 import { useState } from "react";
+import Image from "next/image";
 
 const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
 
@@ -22,7 +23,7 @@ export default function AvisoLegalClient() {
             aria-pressed={lang === "es"}
             style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 12px" }}
           >
-            <img src="/spain.webp" alt="ES" style={{ width: 18, height: 18, objectFit: "cover", borderRadius: 999 }} />
+            <Image src="/spain.webp" alt="ES" width={18} height={18} style={{ objectFit: "cover", borderRadius: 999 }} />
             <span>ES</span>
           </button>
           <button
@@ -31,7 +32,7 @@ export default function AvisoLegalClient() {
             aria-pressed={lang === "en"}
             style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 12px" }}
           >
-            <img src="/uk.webp" alt="EN" style={{ width: 18, height: 18, objectFit: "cover", borderRadius: 999 }} />
+            <Image src="/uk.webp" alt="EN" width={18} height={18} style={{ objectFit: "cover", borderRadius: 999 }} />
             <span>EN</span>
           </button>
         </div>
@@ -76,10 +77,10 @@ export default function AvisoLegalClient() {
         <p>Contacta con nosotros:</p>
         <div style={{ display: "flex", gap: 12, alignItems: "center", marginTop: 8 }}>
           <a href="https://www.instagram.com/pablofit_10/" target="_blank" rel="noopener noreferrer">
-            <img src="/instagram.webp" alt="Instagram" style={{ height: 28 }} />
+            <Image src="/instagram.webp" alt="Instagram" width={28} height={28} />
           </a>
           <a className="btn" href={WHATSAPP} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 12px" }}>
-            <img src="/whatsapp.webp" alt="WhatsApp" style={{ width: 18, height: 18 }} />
+            <Image src="/whatsapp.webp" alt="WhatsApp" width={18} height={18} />
             CONTACTAR
           </a>
         </div>

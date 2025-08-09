@@ -55,13 +55,7 @@ function SupportIcon() {
   );
 }
 
-function AdaptIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 4h8v8H4V4zM12 12h8v8h-8v-8z" stroke="currentColor" strokeWidth="1.8"/>
-    </svg>
-  );
-}
+// Eliminado AdaptIcon por no utilizarse para evitar lints
 
 const ITEMS: InfoItem[] = [
   {

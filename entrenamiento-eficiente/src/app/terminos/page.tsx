@@ -6,7 +6,7 @@ export const metadata = {
   description: "Esta ruta redirige a /aviso-legal.",
 };
 
-const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
+// Nota: Eliminado WHATSAPP no utilizado para evitar lints
 
 export default function TerminosPage() {
   if (typeof window !== "undefined") {

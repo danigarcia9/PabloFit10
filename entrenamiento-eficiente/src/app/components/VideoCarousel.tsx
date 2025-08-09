@@ -3,7 +3,7 @@
 // Comentario (ES): Carrusel de vídeos con soporte de swipe, pausa al cambiar slide y flechas laterales.
 // Uso: recibe una lista de URLs de vídeo; en móvil permite deslizar y pausa el vídeo anterior al navegar.
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Props = { videos: { url: string; posterUrl?: string }[] };
 
@@ -25,7 +25,7 @@ export default function VideoCarousel({ videos }: Props) {
     }
   }
 
-  function scrollToIndex(i: number) {
+  const scrollToIndex = useCallback((i: number) => {
     const next = Math.max(0, Math.min(i, videos.length - 1));
     setIndex(next);
     const container = containerRef.current;
@@ -34,7 +34,7 @@ export default function VideoCarousel({ videos }: Props) {
       container.scrollTo({ left: width * next, behavior: "smooth" });
     }
     pauseAllExcept(next);
-  }
+  }, [videos.length]);
 
   // Swipe handlers
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function VideoCarousel({ videos }: Props) {
       container.removeEventListener("touchmove", onTouchMove);
       container.removeEventListener("touchend", onTouchEnd);
     };
-  }, [index, canNext, canPrev, videos.length]);
+  }, [index, canNext, canPrev, videos.length, scrollToIndex]);
 
   // Pause others on index change when user navigates via arrows/keys
   useEffect(() => {

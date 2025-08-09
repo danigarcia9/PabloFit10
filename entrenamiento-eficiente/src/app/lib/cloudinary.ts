@@ -17,6 +17,20 @@ export type CloudinaryAsset = {
   resourceType: "image" | "video" | string;
 };
 
+type CloudinarySearchResource = {
+  public_id: string;
+  secure_url: string;
+  width: number;
+  height: number;
+  format: string;
+  resource_type: string;
+};
+
+type CloudinarySearchResponse = {
+  resources?: CloudinarySearchResource[];
+  next_cursor?: string;
+};
+
 export async function listCloudinaryFolderResources(folderNameOrPrefix: string, resourceType: "image" | "video"): Promise<CloudinaryAsset[]> {
   const results: CloudinaryAsset[] = [];
   let nextCursor: string | undefined = undefined;
@@ -29,7 +43,21 @@ export async function listCloudinaryFolderResources(folderNameOrPrefix: string, 
       // Buscar por nombre de asset folder
       nextCursor = undefined;
       do {
-        const res: any = await (cloudinary as any).search
+        const res = await (
+          (cloudinary as unknown as {
+            search: {
+              expression: (
+                expr: string
+              ) => {
+                max_results: (n: number) => {
+                  next_cursor: (cursor?: string) => {
+                    execute: () => Promise<CloudinarySearchResponse>;
+                  };
+                };
+              };
+            };
+          }).search
+        )
           .expression(`asset_folder="${folderNameOrPrefix}" AND resource_type:${resourceType}`)
           .max_results(100)
           .next_cursor(nextCursor)
@@ -80,7 +108,7 @@ export async function listCloudinaryFolderResources(folderNameOrPrefix: string, 
         nextCursor = res.next_cursor;
       } while (nextCursor);
     }
-  } catch (error) {
+  } catch {
     // Silenciar errores de traza en cliente; maneja vacío
   }
   
