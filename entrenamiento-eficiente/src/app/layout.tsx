@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./(components)/Header";
@@ -29,8 +30,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Comentario (ES): ID de Google Analytics (GA4). En producción puede venir de variables de entorno.
+  const GA_ID = "G-V9J183MYG7";
   return (
     <html lang="es">
+      <head>
+        {/* Comentario (ES): Preconexión a Cloudinary para acelerar la carga inicial de imágenes/vídeos */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+
+        {/* Comentario (ES): Google Analytics (GA4) con carga diferida tras la hidratación */}
+        <Script
+          id="ga4-lib"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-config" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
         {children}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { listCloudinaryFolderResources } from "./lib/cloudinary";
 import VideoCarousel from "./components/VideoCarousel";
+import AssetPreloader from "./components/AssetPreloader";
 import TrustBadge from "./(components)/TrustBadge";
 import FeatureItem from "./(components)/FeatureItem";
 import SectionTitle from "./(components)/SectionTitle";
@@ -38,6 +39,30 @@ export default async function Home() {
 
   return (
     <main className="container" style={{ paddingTop: 2, paddingBottom: 64 }}>
+      {(() => {
+        // Comentario (ES): Construimos listas para precargar imágenes y pósters de vídeo.
+        const galleryImageUrls = changePhotos.map((a) => a.secureUrl);
+        const videoPosterUrls = testimonialVideos.map((v) => {
+          // Poster por defecto de Cloudinary: añadimos sufijo .jpg al vídeo
+          try {
+            const u = new URL(v.secureUrl);
+            // Ej: /video/upload/.../publicId.mp4 -> /video/upload/.../publicId.jpg
+            const lastDot = u.pathname.lastIndexOf(".");
+            if (lastDot > -1) u.pathname = u.pathname.slice(0, lastDot) + ".jpg";
+            else u.pathname = u.pathname + ".jpg";
+            return u.toString();
+          } catch {
+            return v.secureUrl + ".jpg";
+          }
+        });
+        const staticImages = [
+          "/hero-pablo.png",
+          "/pablo-polo-sentado.jpg",
+        ];
+        return (
+          <AssetPreloader imageUrls={[...staticImages, ...galleryImageUrls]} videoPosterUrls={videoPosterUrls} />
+        );
+      })()}
       {/* Hero */}
       <section className="section" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 2 }}>
         
@@ -113,7 +138,20 @@ export default async function Home() {
       {/* Videos testimoniales (Cloudinary, carrusel) */}
       <section className="section">
         <SectionTitle label="TESTIMONIOS EN VÍDEO" variant="video" />
-        <VideoCarousel videos={testimonialVideos.map(v => ({ url: v.secureUrl }))} />
+        <VideoCarousel videos={testimonialVideos.map(v => ({
+          url: v.secureUrl,
+          posterUrl: (() => {
+            try {
+              const u = new URL(v.secureUrl);
+              const lastDot = u.pathname.lastIndexOf(".");
+              if (lastDot > -1) u.pathname = u.pathname.slice(0, lastDot) + ".jpg";
+              else u.pathname = u.pathname + ".jpg";
+              return u.toString();
+            } catch {
+              return v.secureUrl + ".jpg";
+            }
+          })(),
+        }))} />
         <div style={{ marginTop: 16 }}>
           <CtaButton label="Más información del programa" />
         </div>

@@ -5,7 +5,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Props = { videos: { url: string }[] };
+type Props = { videos: { url: string; posterUrl?: string }[] };
 
 export default function VideoCarousel({ videos }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -63,7 +63,12 @@ export default function VideoCarousel({ videos }: Props) {
   }, [index, canNext, canPrev, videos.length]);
 
   // Pause others on index change when user navigates via arrows/keys
-  useEffect(() => { pauseAllExcept(index); }, [index]);
+  useEffect(() => {
+    pauseAllExcept(index);
+    // Comentario (ES): cuando cambia el índice, forzamos carga del nuevo vídeo activo si aún no tenía fuente.
+    const active = videoRefs.current[index];
+    try { active?.load?.(); } catch {}
+  }, [index]);
 
   return (
     <div style={{ position: "relative" }}>
@@ -97,11 +102,12 @@ export default function VideoCarousel({ videos }: Props) {
               <video
                 ref={(el) => { videoRefs.current[i] = el; }}
                 controls
-                preload="metadata"
+                preload={i === index ? "metadata" : "none"}
                 playsInline
+                poster={v.posterUrl}
                 style={{ width: "100%", borderRadius: 12 }}
               >
-                <source src={v.url} />
+                {i === index ? <source src={v.url} /> : null}
               </video>
             </div>
           ))}
