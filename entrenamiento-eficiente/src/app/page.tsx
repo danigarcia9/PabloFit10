@@ -10,6 +10,7 @@ import FeatureItem from "./(components)/FeatureItem";
 import SectionTitle from "./(components)/SectionTitle";
 import ChangesGallery from "./components/ChangesGallery";
 import EfficientMethodSection from "./(components)/EfficientMethodSection";
+import FinalCtaBanner from "./(components)/FinalCtaBanner";
 
 const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
 
@@ -121,6 +122,8 @@ export default async function Home() {
       {/* Explicación del método */}
       <EfficientMethodSection />
 
+      {/* Texto completo del método (copia del cliente)       <MethodFullCopy />*/}
+
       {/* FAQs cortas */}
       <section className="section" style={{ display: "grid", gap: 10 }}>
         <SectionTitle label="PREGUNTAS FRECUENTES" variant="faq" />
@@ -135,6 +138,9 @@ export default async function Home() {
           </details>
         ))}
       </section>
+      
+      {/* Banner final con imagen y CTA WhatsApp */}
+      <FinalCtaBanner />
     </main>
   );
 }
