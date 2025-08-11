@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Header from "./(components)/Header";
 import Footer from "./(components)/Footer";
@@ -58,6 +59,8 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        {/* Comentario (ES): Componente de Vercel Analytics para seguimiento de métricas y rendimiento */}
+        <Analytics />
       </body>
     </html>
   );
