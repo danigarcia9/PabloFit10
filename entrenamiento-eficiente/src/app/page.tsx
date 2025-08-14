@@ -12,12 +12,23 @@ import SectionTitle from "./(components)/SectionTitle";
 import ChangesGallery from "./components/ChangesGallery";
 import EfficientMethodSection from "./(components)/EfficientMethodSection";
 import FinalCtaBanner from "./(components)/FinalCtaBanner";
+import { trackWhatsAppClick } from "./lib/analytics";
 
 const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
 
-function CtaButton({ label = "Habla conmigo por WhatsApp" }) {
+function CtaButton({ label = "Habla conmigo por WhatsApp", location = "general" }) {
+  const handleClick = () => {
+    trackWhatsAppClick(label, location);
+  };
+
   return (
-    <a className="btn btn--block" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+    <a 
+      className="btn btn--block" 
+      href={WHATSAPP} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      onClick={handleClick}
+    >
       {label}
     </a>
   );
@@ -94,7 +105,7 @@ export default async function Home() {
           nutrición simple y resultados reales.
         </p>
         <div style={{ marginTop: 16 }}>
-          <CtaButton label="Quiero empezar ahora" />
+          <CtaButton label="Quiero empezar ahora" location="hero" />
         </div>
       </section>
 
@@ -126,7 +137,7 @@ export default async function Home() {
           sin planes rígidos. Estructura por fases de 3 meses con objetivos claros, seguimiento y
           hábitos duraderos.
         </p>
-        <CtaButton label="Reserva tu plaza" />
+        <CtaButton label="Reserva tu plaza" location="commercial_text" />
       </section>
 
       {/* Galería de cambios (Cloudinary) con ver más */}
@@ -153,7 +164,7 @@ export default async function Home() {
           })(),
         }))} />
         <div style={{ marginTop: 16 }}>
-          <CtaButton label="Más información del programa" />
+          <CtaButton label="Más información del programa" location="testimonials" />
         </div>
       </section>
 

@@ -3,6 +3,7 @@
 
 import React from "react";
 import SectionTitle from "./SectionTitle";
+import { trackWhatsAppClick } from "../lib/analytics";
 
 const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
 
@@ -108,7 +109,13 @@ export default function EfficientMethodSection() {
       </div>
 
       <div style={{ marginTop: 16 }}>
-        <a className="btn btn--block" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+        <a 
+          className="btn btn--block" 
+          href={WHATSAPP} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("Quiero mi plan eficiente", "method_section")}
+        >
           Quiero mi plan eficiente
         </a>
       </div>

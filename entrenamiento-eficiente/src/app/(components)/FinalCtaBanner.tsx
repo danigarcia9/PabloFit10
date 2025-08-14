@@ -3,6 +3,7 @@
 
 import Image from "next/image";
 import React from "react";
+import { trackWhatsAppClick } from "../lib/analytics";
 
 const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
 
@@ -28,6 +29,7 @@ export default function FinalCtaBanner() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("Habla conmigo por WhatsApp", "final_banner")}
           >
             Habla conmigo por WhatsApp
           </a>

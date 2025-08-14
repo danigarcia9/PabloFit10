@@ -5,6 +5,7 @@
 
 import Image from "next/image";
 import React from "react";
+import { trackGalleryViewMoreClick, trackWhatsAppClick } from "../lib/analytics";
 
 export type GalleryPhoto = {
   secureUrl: string;
@@ -54,7 +55,15 @@ export default function ChangesGallery({ photos }: ChangesGalleryProps) {
             <div className="gallery__ctaCard" key={`cta-collapsed-7`}>
               <h3 className="title" style={{ margin: 0 }}>Empieza hoy</h3>
               <p className="subtitle" style={{ margin: 0 }}>WhatsApp en 1 min</p>
-              <a className="btn btn--block" href="https://api.whatsapp.com/send/?phone=34640974820" target="_blank" rel="noopener noreferrer">Hablar ahora</a>
+              <a 
+                className="btn btn--block" 
+                href="https://api.whatsapp.com/send/?phone=34640974820" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick("Hablar ahora", "gallery_collapsed")}
+              >
+                Hablar ahora
+              </a>
             </div>
           );
         }
@@ -69,7 +78,15 @@ export default function ChangesGallery({ photos }: ChangesGalleryProps) {
       <div className="gallery__ctaCard" key={`cta-collapsed-7`}>
         <h3 className="title" style={{ margin: 0 }}>Empieza hoy</h3>
         <p className="subtitle" style={{ margin: 0 }}>WhatsApp en 1 min</p>
-        <a className="btn btn--block" href="https://api.whatsapp.com/send/?phone=34640974820" target="_blank" rel="noopener noreferrer">Hablar ahora</a>
+        <a 
+          className="btn btn--block" 
+          href="https://api.whatsapp.com/send/?phone=34640974820" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("Hablar ahora", "gallery_collapsed")}
+        >
+          Hablar ahora
+        </a>
       </div>
     );
     items.push(renderImage(firstNine[7], `g-7`));
@@ -86,7 +103,13 @@ export default function ChangesGallery({ photos }: ChangesGalleryProps) {
         ) : null}
 
         <div className="gallery__moreCta" style={{ textAlign: "center" }}>
-          <button className="btn btn--ghostAccent" onClick={() => setShowAll(true)}>
+          <button 
+            className="btn btn--ghostAccent" 
+            onClick={() => {
+              trackGalleryViewMoreClick();
+              setShowAll(true);
+            }}
+          >
             Ver más
           </button>
         </div>
@@ -107,11 +130,19 @@ export default function ChangesGallery({ photos }: ChangesGalleryProps) {
         if ((i + 1) % 7 === 0 && i < photos.length - 1) {
             const variant = CTA_VARIANTS[ctaCount % CTA_VARIANTS.length];
             ctaCount += 1;
-          elements.push(
+                      elements.push(
             <div className="gallery__ctaCard" key={`cta-${i}`}>
                 <h3 className="title" style={{ margin: 0 }}>{variant.title}</h3>
                 <p className="subtitle" style={{ margin: 0 }}>{variant.sub}</p>
-                <a className="btn btn--block" href="https://api.whatsapp.com/send/?phone=34640974820" target="_blank" rel="noopener noreferrer">{variant.btn}</a>
+                <a 
+                  className="btn btn--block" 
+                  href="https://api.whatsapp.com/send/?phone=34640974820" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick(variant.btn, "gallery_expanded")}
+                >
+                  {variant.btn}
+                </a>
             </div>
           );
         }
