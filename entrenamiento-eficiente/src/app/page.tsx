@@ -12,27 +12,7 @@ import SectionTitle from "./(components)/SectionTitle";
 import ChangesGallery from "./components/ChangesGallery";
 import EfficientMethodSection from "./(components)/EfficientMethodSection";
 import FinalCtaBanner from "./(components)/FinalCtaBanner";
-import { trackWhatsAppClick } from "./lib/analytics";
-
-const WHATSAPP = "https://api.whatsapp.com/send/?phone=34640974820";
-
-function CtaButton({ label = "Habla conmigo por WhatsApp", location = "general" }) {
-  const handleClick = () => {
-    trackWhatsAppClick(label, location);
-  };
-
-  return (
-    <a 
-      className="btn btn--block" 
-      href={WHATSAPP} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      onClick={handleClick}
-    >
-      {label}
-    </a>
-  );
-}
+import CtaButton from "./components/CtaButton";
 
 export default async function Home() {
   // Usa nombre del asset folder visible en Cloudinary (no el id interno)
