@@ -3,7 +3,7 @@
 // Comentario (ES): Pre-cargador de assets para mejorar la percepción de velocidad al entrar.
 // Uso: monta este componente en la página y pásale listas de URLs de imágenes y vídeos para cachearlas al inicio.
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 type AssetPreloaderProps = {
   imageUrls?: string[];
