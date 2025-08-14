@@ -1,6 +1,8 @@
 // Comentario (ES): Sección explicativa del método Entreno Eficiente con tarjetas e iconos.
 // Uso: coloca <EfficientMethodSection /> después de testimonios para explicar el método por bloques.
 
+"use client";
+
 import React from "react";
 import SectionTitle from "./SectionTitle";
 import { trackWhatsAppClick } from "../lib/analytics";

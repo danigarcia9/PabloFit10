@@ -1,3 +1,5 @@
+"use client";
+
 // Comentario (ES): Banner final con imagen difuminada arriba/abajo y titular con parte en amarillo.
 // Uso: cerrar la home con un CTA fuerte y botón a WhatsApp por encima de la imagen.
 
