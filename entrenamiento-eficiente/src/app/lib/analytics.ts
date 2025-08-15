@@ -14,9 +14,12 @@ export const trackEvent = (eventName: string, parameters: Record<string, unknown
   }
 };
 
-// Evento para clicks en botones de WhatsApp
+// Evento para clicks en botones de WhatsApp - organizado por ubicación
 export const trackWhatsAppClick = (buttonLabel: string, location: string) => {
-  trackEvent('whatsapp_click', {
+  // Crear nombre de evento específico por ubicación para mejor análisis en GA4
+  const eventName = `whatsapp_${location}`;
+  
+  trackEvent(eventName, {
     button_label: buttonLabel,
     location: location,
     event_category: 'engagement',
